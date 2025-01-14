@@ -20,11 +20,11 @@ const handleError = (e) => {
 
 /**
  * 이미지 컴포넌트 - 이미지 에러 처리
- * @param {object} props
- * @param {string} props.src : 이미지 주소
- * @param {string} props.alt : 이미지 대채 문구
- * @param {any[]} props.props : 나머지 속성들
- * @return {React.JSX}
+ * @param {object} props - 컴포넌트 속성
+ * @param {string} props.src - 이미지 주소
+ * @param {string} props.alt - 이미지 대체 문구
+ * @param {object} props.props - 나머지 속성들
+ * @return {JSX.Element} 이미지 컴포넌트
  */
 function Img({ src = noImage, alt = '', ...props }) {
   return <img src={src} alt={alt} {...props} onError={handleError} />;
@@ -39,21 +39,16 @@ export default Img;
 import Image, { ImageProps } from 'next/image';
 import NoImage from '@/public/images/common/no-image.svg?url';
 
-/**
- * @interface Props
- * @property {boolean} Props.useImg - img 태그 사용 여부
- * @property {string} Props.src - 이미지 경로
- * @property {string} Props.alt - 이미지 설명
- */
 interface Props extends ImageProps {
   useImg?: boolean;
   src: string;
   alt: string;
+  [key: string]: unknown;
 }
 
 /**
  * 이미지 로드 실패 시 처리
- * @param {Event} e - 실패 이벤트
+ * @param {React.SyntheticEvent<HTMLImageElement>} e - 실패 이벤트
  */
 const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
   const target = e.currentTarget;
@@ -61,6 +56,15 @@ const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
   target.src = NoImage.src;
 };
 
+/**
+ * 이미지 컴포넌트 - 이미지 에러 처리
+ * @param {Props} props - 컴포넌트 속성
+ * @param {boolean} props.useImg - img 태그 사용 여부
+ * @param {string} props.src - 이미지 주소
+ * @param {string} props.alt - 이미지 대체 문구
+ * @param {object} props.props - 나머지 속성들
+ * @return {JSX.Element} 이미지 컴포넌트
+ */
 export default function Img({ useImg = false, src, alt = '', ...props }: Props) {
   const imgProps = {
     src: src || NoImage,
