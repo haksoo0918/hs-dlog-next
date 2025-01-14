@@ -12,7 +12,7 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 })
 
-export default [
+const eslintConfig = [
   {
     ignores: [],
   },
@@ -65,6 +65,10 @@ export default [
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-var-requires': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
+      // custom
+      '@typescript-eslint/no-require-imports': 'off', // tailwind.config
     },
   },
 ]
+
+export default eslintConfig

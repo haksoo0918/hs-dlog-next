@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://cdn.jsdelivr.net/gh/wan2land/d2coding/d2coding-ligature-subset.css');
+
+:root {
+  --font-d2coding: 'D2Coding';
+
+  ::selection {
+    @apply bg-teal-500 text-white;
+  }
+}
+
+@layer base {
+  a:hover {
+    @apply underline;
+  }
+}
+
 .task-list-item::before {
   @apply hidden;
 }

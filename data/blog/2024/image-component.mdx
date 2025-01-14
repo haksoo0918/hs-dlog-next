@@ -1,0 +1,84 @@
+---
+title: Image Component
+date: '2024-12-08'
+tags: ['image', 'component', 'react', 'next']
+draft: false
+summary: 대게 이미지가 깨질 수 도 있는 경우를 대비한 이미지 컴포넌트
+---
+
+대게 이미지가 깨질 수 도 있는 경우를 대비한 이미지 컴포넌트다.  
+총 2개다 리액트 기반, 넥스트 기반
+
+우선 리액트다.
+
+```jsx:Img.jsx
+import noImage from '../assets/no-image.svg';
+
+const handleError = (e) => {
+  e.target.src = noImage;
+};
+
+/**
+ * 이미지 컴포넌트 - 이미지 에러 처리
+ * @param {object} props
+ * @param {string} props.src : 이미지 주소
+ * @param {string} props.alt : 이미지 대채 문구
+ * @param {any[]} props.props : 나머지 속성들
+ * @return {React.JSX}
+ */
+function Img({ src = noImage, alt = '', ...props }) {
+  return <img src={src} alt={alt} {...props} onError={handleError} />;
+}
+
+export default Img;
+```
+
+요건 넥스트 용이다.
+
+```tsx:Img.tsx
+import Image, { ImageProps } from 'next/image';
+import NoImage from '@/public/images/common/no-image.svg?url';
+
+/**
+ * @interface Props
+ * @property {boolean} Props.useImg - img 태그 사용 여부
+ * @property {string} Props.src - 이미지 경로
+ * @property {string} Props.alt - 이미지 설명
+ */
+interface Props extends ImageProps {
+  useImg?: boolean;
+  src: string;
+  alt: string;
+}
+
+/**
+ * 이미지 로드 실패 시 처리
+ * @param {Event} e - 실패 이벤트
+ */
+const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  const target = e.currentTarget;
+  target.srcset = '';
+  target.src = NoImage.src;
+};
+
+export default function Img({ useImg = false, src, alt = '', ...props }: Props) {
+  const imgProps = {
+    src: src || NoImage,
+    alt,
+    onError: handleError,
+    ...props,
+  };
+
+  return useImg ? (
+    <img {...imgProps} />
+  ) : (
+    <Image
+      placeholder="blur"
+      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+      {...imgProps}
+    />
+  );
+}
+```
+
+아직까지는 맘에 든다. 😊
