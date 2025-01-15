@@ -1,7 +1,10 @@
-import Image from './Image'
-import Link from './Link'
+import Image from '../Image'
+import Link from '../Link'
+import { Github, Link2 } from 'lucide-react'
 
-const Card = ({ title, description, imgSrc, href }) => (
+import styles from './Card.module.css'
+
+const Card = ({ title, description, imgSrc, github, href }) => (
   <div className="md max-w-[544px] p-4 md:w-1/2">
     <div
       className={`${
@@ -39,16 +42,18 @@ const Card = ({ title, description, imgSrc, href }) => (
           )}
         </h2>
         <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
-        {href && (
-          <Link
-            href={href}
-            className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label={`Link to ${title}`}
-            target="_blank"
-          >
-            더 보기 &rarr;
-          </Link>
-        )}
+        <div className="flex gap-4">
+          {github && (
+            <Link href={github} className={styles.link} aria-label="Github URL" target="_blank">
+              <Github size={24} /> Github
+            </Link>
+          )}
+          {href && (
+            <Link href={href} className={styles.link} aria-label="배포 URL" target="_blank">
+              <Link2 size={24} /> 배포
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   </div>
