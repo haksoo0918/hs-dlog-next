@@ -14,10 +14,6 @@ summary: 대게 이미지가 깨질 수 도 있는 경우를 대비한 이미지
 ```jsx:Img.jsx
 import noImage from '../assets/no-image.svg';
 
-const handleError = (e) => {
-  e.target.src = noImage;
-};
-
 /**
  * 이미지 컴포넌트 - 이미지 에러 처리
  * @param {object} props - 컴포넌트 속성
@@ -27,6 +23,11 @@ const handleError = (e) => {
  * @return {JSX.Element} 이미지 컴포넌트
  */
 function Img({ src = noImage, alt = '', ...props }) {
+  // 이미지 로드 실패 시 처리
+  const handleError = (e) => {
+    e.target.src = noImage;
+  };
+
   return <img src={src} alt={alt} {...props} onError={handleError} />;
 }
 
@@ -44,16 +45,6 @@ interface Props extends ImageProps {
 }
 
 /**
- * 이미지 로드 실패 시 처리
- * @param {React.SyntheticEvent<HTMLImageElement>} e - 실패 이벤트
- */
-const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-  const target = e.currentTarget;
-  target.srcset = '';
-  target.src = NoImage.src;
-};
-
-/**
  * 이미지 컴포넌트 - 이미지 에러 처리
  * @param {Props} props - 컴포넌트 속성
  * @param {boolean} props.useImg - img 태그 사용 여부
@@ -68,6 +59,13 @@ export default function Img({ useImg = false, src, alt = '', ...props }: Props) 
     alt,
     onError: handleError,
     ...props,
+  };
+
+  // 이미지 로드 실패 시 처리
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.currentTarget;
+    target.srcset = '';
+    target.src = NoImage.src;
   };
 
   return useImg ? (
