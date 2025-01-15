@@ -9,15 +9,27 @@ const MAX_DISPLAY = 5
 export default function Home({ posts }) {
   return (
     <>
+      <header>
+        <h1 className="text-xl font-bold">HS dlog 홈페이지 입니다.</h1>
+        <p className="my-4">
+          여기 소개글을 적어둘까 하는데, 뭐 마땅히 적을게 없네요.
+          <br />
+          이제 막 만들어서 아직 별 내용이 없습니다. 적당히 보다 가세요. ㅎㅎ
+          <br />
+          아마도 조금씩이나마 콘텐츠도 늘어나고 모양도 이뻐질 꺼에요. 😊
+        </p>
+      </header>
+
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Latest
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
+            블로그 글
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             {siteMetadata.description}
           </p>
         </div>
+
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {
@@ -70,6 +82,7 @@ export default function Home({ posts }) {
           })}
         </ul>
       </div>
+
       {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
@@ -81,6 +94,7 @@ export default function Home({ posts }) {
           </Link>
         </div>
       )}
+
       {siteMetadata.newsletter?.provider && (
         <div className="flex items-center justify-center pt-4">
           <NewsletterForm />

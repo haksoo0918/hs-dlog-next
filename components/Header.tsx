@@ -5,15 +5,16 @@ import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 import Image from 'next/image'
+import { cn } from './lib/utils'
 
 const Header = () => {
-  let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10'
-  if (siteMetadata.stickyNav) {
-    headerClass += ' sticky top-0 z-50'
-  }
-
   return (
-    <header className={headerClass}>
+    <header
+      className={cn(
+        siteMetadata.stickyNav && 'sticky top-0 z-50',
+        'flex w-full items-center justify-between bg-white py-10 dark:bg-gray-950'
+      )}
+    >
       <Link href="/" aria-label={siteMetadata.headerTitle} className="hover:no-underline">
         <div className="flex items-center justify-between">
           <div className="mr-3">
