@@ -5,7 +5,7 @@ const siteMetadata = {
   headerTitle: 'HS dlog',
   description: '화면 개발 관련 또는 잡담 - 기록',
   language: 'ko',
-  theme: 'system', // system, dark or light
+  theme: 'system', // system, dark 또는 light
   siteUrl: 'https://haksoo0918.github.io/hs-dlog-next/',
   siteRepo: 'https://github.com/haksoo0918/hs-dlog-next',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
@@ -23,77 +23,77 @@ const siteMetadata = {
   // medium: 'https://medium.com',
   // bluesky: 'https://bsky.app/',
   locale: 'ko-KR',
-  // set to true if you want a navbar fixed to the top
+  // 상단에 고정된 네비게이션 바를 원하면 true로 설정
   stickyNav: true,
-  // analytics: {
-  // If you want to use an analytics provider you have to add it to the
-  // content security policy in the `next.config.js` file.
-  // supports Plausible, Simple Analytics, Umami, Posthog or Google Analytics.
-  // umamiAnalytics: {
-  // We use an env variable for this site to avoid other users cloning our analytics ID
-  // umamiWebsiteId: process.env.NEXT_UMAMI_ID, // e.g. 123e4567-e89b-12d3-a456-426614174000
-  // You may also need to overwrite the script if you're storing data in the US - ex:
-  // src: 'https://us.umami.is/script.js'
-  // Remember to add 'us.umami.is' in `next.config.js` as a permitted domain for the CSP
-  // },
-  // plausibleAnalytics: {
-  //   plausibleDataDomain: '', // e.g. tailwind-nextjs-starter-blog.vercel.app
-  // If you are hosting your own Plausible.
-  //   src: '', // e.g. https://plausible.my-domain.com/js/script.js
-  // },
-  // simpleAnalytics: {},
-  // posthogAnalytics: {
-  //   posthogProjectApiKey: '', // e.g. 123e4567-e89b-12d3-a456-426614174000
-  // },
-  // googleAnalytics: {
-  //   googleAnalyticsId: '', // e.g. G-XXXXXXX
-  // },
-  // },
+  analytics: {
+    // 분석 제공자를 사용하려면 이를
+    // `next.config.js` 파일의 콘텐츠 보안 정책에 추가해야 합니다.
+    // Plausible, Simple Analytics, Umami, Posthog 또는 Google Analytics를 지원합니다.
+    // umamiAnalytics: {
+    // 이 사이트에서는 다른 사용자가 우리의 분석 ID를 복제하지 않도록 환경 변수를 사용합니다.
+    // umamiWebsiteId: process.env.NEXT_UMAMI_ID, // 예: 123e4567-e89b-12d3-a456-426614174000
+    // 데이터를 미국에 저장하는 경우 스크립트를 덮어써야 할 수도 있습니다. 예:
+    // src: 'https://us.umami.is/script.js'
+    // `next.config.js` 파일의 CSP에 'us.umami.is'를 허용된 도메인으로 추가하는 것을 잊지 마세요.
+    // },
+    plausibleAnalytics: {
+      plausibleDataDomain: 'hs-dlog.vercel.app', // 예: tailwind-nextjs-starter-blog.vercel.app
+      // 자체 Plausible을 호스팅하는 경우.
+      // src: '', // 예: https://plausible.my-domain.com/js/script.js
+    },
+    // simpleAnalytics: {},
+    // posthogAnalytics: {
+    //   posthogProjectApiKey: '', // 예: 123e4567-e89b-12d3-a456-426614174000
+    // },
+    // googleAnalytics: {
+    //   googleAnalyticsId: '', // 예: G-XXXXXXX
+    // },
+  },
   // newsletter: {
-  // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus, beehive
-  // Please add your .env file and modify it according to your selection
+  // mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus, beehive를 지원합니다.
+  // .env 파일을 추가하고 선택에 따라 수정하세요
   // provider: 'buttondown',
   // },
   // comments: {
-  // If you want to use an analytics provider you have to add it to the
-  // content security policy in the `next.config.js` file.
-  // Select a provider and use the environment variables associated to it
+  // 분석 제공자를 사용하려면 이를
+  // `next.config.js` 파일의 콘텐츠 보안 정책에 추가해야 합니다.
+  // 제공자를 선택하고 관련 환경 변수를 사용하세요
   // https://vercel.com/docs/environment-variables
-  // provider: 'giscus', // supported providers: giscus, utterances, disqus
+  // provider: 'giscus', // 지원되는 제공자: giscus, utterances, disqus
   // giscusConfig: {
-  // Visit the link below, and follow the steps in the 'configuration' section
+  // 아래 링크를 방문하여 'configuration' 섹션의 단계를 따르세요
   // https://giscus.app/
   // repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
   // repositoryId: process.env.NEXT_PUBLIC_GISCUS_REPOSITORY_ID,
   // category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY,
   // categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
-  // mapping: 'pathname', // supported options: pathname, url, title
-  // reactions: '1', // Emoji reactions: 1 = enable / 0 = disable
-  // Send discussion metadata periodically to the parent window: 1 = enable / 0 = disable
+  // mapping: 'pathname', // 지원되는 옵션: pathname, url, title
+  // reactions: '1', // 이모지 반응: 1 = 활성화 / 0 = 비활성화
+  // 주기적으로 부모 창에 토론 메타데이터 전송: 1 = 활성화 / 0 = 비활성화
   // metadata: '0',
-  // theme example: light, dark, dark_dimmed, dark_high_contrast
+  // 테마 예시: light, dark, dark_dimmed, dark_high_contrast
   // transparent_dark, preferred_color_scheme, custom
   // theme: 'light',
-  // theme when dark mode
+  // 다크 모드일 때 테마
   // darkTheme: 'transparent_dark',
-  // If the theme option above is set to 'custom`
-  // please provide a link below to your custom theme css file.
-  // example: https://giscus.app/themes/custom_example.css
+  // 위의 테마 옵션이 'custom'으로 설정된 경우
+  // 아래에 사용자 정의 테마 CSS 파일에 대한 링크를 제공하세요.
+  // 예시: https://giscus.app/themes/custom_example.css
   // themeURL: '',
-  // This corresponds to the `data-lang="en"` in giscus's configurations
+  // 이는 giscus의 구성에서 `data-lang="en"`에 해당합니다.
   // lang: 'en',
   // },
   // },
   search: {
-    provider: 'kbar', // kbar or algolia
+    provider: 'kbar', // kbar 또는 algolia
     kbarConfig: {
-      searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`, // path to load documents to search
+      searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`, // 검색할 문서를 로드할 경로
     },
     // provider: 'algolia',
     // algoliaConfig: {
-    //   // The application ID provided by Algolia
+    //   // Algolia에서 제공한 애플리케이션 ID
     //   appId: 'R2IYF7ETH7',
-    //   // Public API key: it is safe to commit it
+    //   // 공개 API 키: 클라이언트에서 노출되어도 괜찮습니다.
     //   apiKey: '599cec31baffa4868cae4e79f180729b',
     //   indexName: 'docsearch',
     // },
