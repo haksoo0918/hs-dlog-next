@@ -1,10 +1,12 @@
 'use client'
 
+import { Fragment, useState, useEffect, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
-import { Fragment, useState, useEffect, useRef } from 'react'
+
 import Link from './Link'
 import headerNavLinks from '@/data/headerNavLinks'
+import NavIcons from './NavIcons'
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
@@ -76,9 +78,10 @@ const MobileNav = () => {
                   <Link
                     key={link.title}
                     href={link.href}
-                    className="mb-4 py-2 pr-4 text-2xl font-bold tracking-widest text-gray-900 outline outline-0 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400"
+                    className="mb-4 flex items-center gap-3 py-2 pr-4 text-2xl font-bold tracking-widest text-gray-900 outline outline-0 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400"
                     onClick={onToggleNav}
                   >
+                    <NavIcons title={link.title} />
                     {link.title}
                   </Link>
                 ))}

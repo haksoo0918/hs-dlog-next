@@ -1,10 +1,12 @@
+import Image from 'next/image'
+
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
-import Image from 'next/image'
+import NavIcons from './NavIcons'
 import { cn } from './lib/utils'
 
 const Header = () => {
@@ -38,12 +40,14 @@ const Header = () => {
               <Link
                 key={link.title}
                 href={link.href}
-                className="block font-medium text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400"
+                className="flex gap-2 font-medium text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400"
               >
+                <NavIcons title={link.title} />
                 {link.title}
               </Link>
             ))}
         </div>
+
         <SearchButton />
         <ThemeSwitch />
         <MobileNav />
@@ -52,4 +56,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export { Header as default, NavIcons }
