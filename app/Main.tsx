@@ -1,8 +1,10 @@
+import { formatDate } from 'pliny/utils/formatDate'
+import NewsletterForm from 'pliny/ui/NewsletterForm'
+import { Tag as TagIcon } from 'lucide-react'
+
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import { formatDate } from 'pliny/utils/formatDate'
-import NewsletterForm from 'pliny/ui/NewsletterForm'
 
 const MAX_DISPLAY = 5
 
@@ -14,7 +16,7 @@ export default function Home({ posts }) {
         <p className="my-4">
           여기 소개글을 적어둘까 하는데, 뭐 마땅히 적을게 없네요.
           <br />
-          이제 막 만들어서 아직 별 내용이 없습니다. 적당히 보다 가세요. ㅎㅎ
+          이제 막 만들어서 아직 별 내용이 없습니다. ㅎㅎ
           <br />
           아마도 조금씩이나마 콘텐츠도 늘어나고 모양도 이뻐질 꺼에요. 😊
         </p>
@@ -23,7 +25,7 @@ export default function Home({ posts }) {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
-            블로그 글
+            최근 블로그 글
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             {siteMetadata.description}
@@ -47,7 +49,7 @@ export default function Home({ posts }) {
                     <div className="space-y-5 xl:col-span-3">
                       <div className="space-y-6">
                         <div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                          <h2 className="mb-2 text-2xl font-bold leading-8 tracking-tight">
                             <Link
                               href={`/blog/${slug}`}
                               className="text-gray-900 dark:text-gray-100"
@@ -56,6 +58,7 @@ export default function Home({ posts }) {
                             </Link>
                           </h2>
                           <div className="flex flex-wrap">
+                            <TagIcon className="mr-2 text-gray-400" />
                             {tags.map((tag) => (
                               <Tag key={tag} text={tag} />
                             ))}
@@ -63,16 +66,14 @@ export default function Home({ posts }) {
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                           {summary}
+                          <Link
+                            href={`/blog/${slug}`}
+                            className="ml-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                            aria-label={`더 읽어보기: "${title}"`}
+                          >
+                            더 읽어보기 &rarr;
+                          </Link>
                         </div>
-                      </div>
-                      <div className="text-base font-medium leading-6">
-                        <Link
-                          href={`/blog/${slug}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                          aria-label={`Read more: "${title}"`}
-                        >
-                          Read more &rarr;
-                        </Link>
                       </div>
                     </div>
                   </div>

@@ -26,8 +26,8 @@ module.exports = {
         mono: ['var(--font-d2coding)', ...fontFamily.mono],
       },
       colors: {
-        primary: colors.teal,
-        gray: colors.gray,
+        primary: colors.red,
+        gray: colors.stone,
       },
       zIndex: {
         60: '60',
