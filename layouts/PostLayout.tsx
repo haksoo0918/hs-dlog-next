@@ -159,7 +159,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   href={`/${basePath}`}
                   className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                 >
-                  &larr; 블로그 글 목록으로 돌아가기
+                  &larr; 블로그 글 목록으로
                 </Link>
               </div>
             </footer>

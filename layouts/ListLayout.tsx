@@ -5,9 +5,11 @@ import { usePathname } from 'next/navigation'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
+
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
+import { Tag as TagIcon } from 'lucide-react'
 
 interface PaginationProps {
   totalPages: number
@@ -135,6 +137,7 @@ export default function ListLayout({
                         </Link>
                       </h3>
                       <div className="flex flex-wrap">
+                        <TagIcon className="mr-2" />
                         {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                       </div>
                     </div>
