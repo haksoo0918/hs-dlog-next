@@ -1,4 +1,4 @@
-import { Github, Link2 } from 'lucide-react'
+import { FolderGit, Link2 } from 'lucide-react'
 
 import Image from '../Image'
 import Link from '../Link'
@@ -6,7 +6,7 @@ import Link from '../Link'
 import styles from './Card.module.css'
 import { cn } from '../lib/utils'
 
-const Card = ({ title, description, imgSrc, github, href }) => (
+const Card = ({ title, description, imgSrc, repository, href }) => (
   <div className="md max-w-[544px] p-4 md:w-1/2">
     <div
       className={cn(
@@ -35,9 +35,14 @@ const Card = ({ title, description, imgSrc, github, href }) => (
         </h2>
         <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
         <div className="flex gap-4">
-          {github && (
-            <Link href={github} className={styles.link} aria-label="Github URL" target="_blank">
-              <Github size={24} /> Github
+          {repository && (
+            <Link
+              href={repository}
+              className={styles.link}
+              aria-label="Repository URL"
+              target="_blank"
+            >
+              <FolderGit size={24} /> 저장소
             </Link>
           )}
           {href && (
