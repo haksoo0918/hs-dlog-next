@@ -28,6 +28,15 @@
   }
 }
 
+@layer utilities {
+  .link {
+    @apply text-primary-500 hover:text-primary-600 dark:hover:text-primary-400;
+  }
+  .link-block {
+    @apply flex items-center gap-2 rounded-md border p-3 hover:bg-gray-50 dark:hover:bg-gray-900;
+  }
+}
+
 .task-list-item::before {
   @apply hidden;
 }
