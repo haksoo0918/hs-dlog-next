@@ -1,0 +1,49 @@
+---
+title: text-wrap의 balance와 pretty의 차이
+date: '2025-01-18'
+tags: ['css', 'text', 'wrap', 'balance', 'pretty']
+draft: false
+summary: CSS의 text-wrap 속성에서 balance와 pretty 값의 주요 차이점
+---
+
+CSS의 `text-wrap` 속성에서 `balance`와 `pretty` 값의 주요 차이점은 다음과 같다.
+
+## 1. `balance`는
+
+- 짧은 텍스트 블록에 적합하다.
+- 각 줄의 문자 수를 균형있게 조정하여 레이아웃 품질과 가독성을 향상시킨다.
+- 제한된 줄 수에만 적용된다.
+- 주로 제목, 부제목, 캡션 등에 사용된다.
+
+## 2. `pretty`는
+
+- 긴 텍스트 블록에 적합하다.
+- 성능보다는 더 나은 타이포그래피를 위해 사용된다.
+- 주로 본문 텍스트에 사용되며, 특히 마지막 줄의 고아(orphan) 방지에 효과적이다.
+- 단락의 마지막 4줄에 대해 조정을 수행한다.
+
+요약하자면, `balance`는 짧은 텍스트의 균형잡힌 배치에 중점을 두는 반면, `pretty`는 긴 텍스트의 전반적인 타이포그래피 개선에 초점이 맞추어져 있다.
+
+즉 `balance`는 제목요소에, `pretty`는 이뻐야하는 문장(문단)에 쓰면 된다.
+
+```css
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.balance {
+  text-wrap: balance;
+}
+.paragraph,
+.pretty {
+  text-wrap: pretty;
+}
+```
+
+---
+
+## 참조
+
+- https://developer.mozilla.org/ko/docs/Web/CSS/text-wrap
