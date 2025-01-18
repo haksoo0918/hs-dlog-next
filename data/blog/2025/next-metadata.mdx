@@ -35,7 +35,7 @@ export async function generateMetadata({ params }) {
 먼저 기본적인 사용법을 정리하면...
 우선 `layout.tsx` 에서 다음과 같이 정의하고,
 
-```tsx title="layout.tsx"
+```tsx:layout.tsx
 export const metadata: Metadata = {
   title: {
     template: '%s | HS dlog',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 
 상세 페이지 `about/page.tsx` 에서 다음처럼 사용하면 된다.
 
-```tsx title="about/page.tsx"
+```tsx:about/page.tsx
 export const metadata: Metadata = {
   title: 'About', // result: <title>About | HS dlog</title>
   title: {
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 
 필수적인 것만 정리해보자. 우선 `layout.tsx`
 
-```tsx title="layout.tsx"
+```tsx:layout.tsx
 import type { Meatadata } from 'next'
 
 export const metadata: Metadata = {
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
 
 상세 페이지 - `about/page.tsx`
 
-```tsx title="about/page.tsx"
+```tsx:about/page.tsx
 import type { Meatadata } from 'next'
 
 export const metadata: Metadata = {
@@ -140,3 +140,9 @@ export const metadata: Metadata = {
 - appLinks
 - robots
 - 기타 등등
+
+---
+
+## 참조
+
+- https://nextjs.org/docs/app/api-reference/functions/generate-metadata

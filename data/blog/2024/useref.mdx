@@ -14,17 +14,20 @@ summary: React의 useRef 쉽게 설명하기
 - useState와 다른점은 값이 변경된다고 컴포넌트를 재렌더링 하지 않는다.
 - DOM에 접근해서 사용할 수 있다.
 
-```jsx title="DOM 요소 참조"
+DOM 요소참조
+
+```jsx
 const inputRef = useRef(null)
 
 useEffect(() => {
   inputRef.current.focus()
 }, [])
-
 ;<input ref={inputRef} />
 ```
 
-```jsx title="이전 값 저장"
+이전 값 저장
+
+```jsx
 const prevCountRef = useRef()
 
 useEffect(() => {
@@ -32,7 +35,9 @@ useEffect(() => {
 }, [count])
 ```
 
-```jsx title="렌더링과 무관한 값 저장"
+렌더링과 무관한 값 저장
+
+```jsx
 const renderCount = useRef(0)
 
 useEffect(() => {
@@ -45,7 +50,9 @@ useEffect(() => {
 - 렌더링 중에 접근하여 사용하는 것은 금한다.
 - 화면에 표시하려는 정보를 위한 변수는 useState를 사용한다.
 
-```jsx title="렌더링 중에 접근 금지"
+렌더링 중에 접근 금지
+
+```jsx
 function MyComp() {
   // Don't do this
   myRef.current = 'value'
