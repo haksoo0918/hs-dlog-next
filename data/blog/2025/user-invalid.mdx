@@ -1,0 +1,35 @@
+---
+title: :invalid와 :user-invalid의 차이
+date: '2025-01-22'
+tags: ['css', 'input', 'valid', 'user-invalid', 'form']
+draft: false
+summary: CSS에서 폼 유효성 검사와 관련된 :invalid와 :user-invalid 의사 클래스의 차이점
+---
+
+CSS에서 `:invalid`와 `:user-invalid` 의사 클래스는 폼 유효성 검사와 관련이 있지만, 중요한 차이점이 있지만, 헷갈린다.  
+둘의 차이점은 다음과 같이 여러 가지 측면에서 비교할 수 있다.
+
+1. 적용 시점
+
+   - `:invalid`는 폼 요소가 유효하지 않은 값을 가지는 즉시 적용된다. 그래서 사용자가 폼과 상호작용하기 전에도 적용될 수 있다.
+   - `:user-invalid`는 사용자가 폼과 상호작용한 후에만 적용된다. 그래서 더 나은 사용자 경험을 제공하고 좀더 정확한 스타일을 적용할 수 있다.
+
+2. 브라우저 지원
+
+   - `:invalid`는 대부분의 최신 브라우저에서 지원된다.
+   - `:user-invalid`는 `:invalid`와 비교하면 최근에 도입되긴 했지만, 그래도 대부분의 최신 브라우저에서 지원된다.
+   - 수치로 비교하자면 97%와 90% 정도의 지원률을 가지고 있어서 큰 차이는 없다.
+
+3. 유효성 검사 범위
+
+   - `:invalid` 모든 유효하지 않은 폼 요소에 적용됩니다.
+   - `:user-invalid` `:invalid`, `:out-of-range`, 또는 비어 있지만 `required`인 요소에 적용됩니다
+
+결론: 가능하면 `:user-invalid`를 사용하는 것이 여러모로 좋다.
+
+---
+
+## 참조
+
+- https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid
+- https://careerly.co.kr/comments/99867
