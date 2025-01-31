@@ -6,10 +6,10 @@ const siteMetadata = {
   description: '화면 개발 관련 또는 잡담 - 기록',
   language: 'ko',
   theme: 'system', // system, dark 또는 light
-  siteUrl: 'https://haksoo0918.github.io/hs-dlog-next/',
+  siteUrl: 'https://hs-dlog.vercel.app',
   siteRepo: 'https://github.com/haksoo0918/hs-dlog-next',
-  siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
+  siteLogo: `${process.env.BASE_PATH || ''}/static/favicons/logo.svg`,
+  // socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   // mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'haksoo0918@gmail.com',
   github: 'https://github.com/haksoo0918',
