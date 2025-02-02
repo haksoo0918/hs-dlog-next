@@ -30,7 +30,7 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags, readingTime } = content
+  const { filePath, path, slug, date, lastmod, title, tags, readingTime } = content
   const basePath = path.split('/')[0]
 
   return (
@@ -47,6 +47,20 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     <time dateTime={date}>
                       {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
                     </time>
+                    {lastmod && (
+                      <>
+                        <span className="mx-2">&middot;</span>
+                        <span>수정됨</span>
+                        <time dateTime={lastmod} className="text-sm">
+                          (
+                          {new Date(lastmod).toLocaleDateString(
+                            siteMetadata.locale,
+                            postDateTemplate
+                          )}
+                          )
+                        </time>
+                      </>
+                    )}
                     <span className="mx-2">&middot;</span>
                     <span>{readingTime.text}</span>
                   </dd>
