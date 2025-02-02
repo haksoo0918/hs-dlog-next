@@ -1,6 +1,7 @@
 ---
 title: 넥스트 page에서 params을 받을때는 Promise로 받게나.
 date: '2025-01-29'
+lastmod: '2025-02-02'
 tags: ['next', 'params', 'build', 'type', 'error']
 draft: false
 summary: next app router에 page파일에서 params props를 사용하는데 빌드할때 에러가 났다.
@@ -99,8 +100,33 @@ interface Props {
 코드를 봐도 에러 메시지를 봐도 그렇고 저 방향이 맞는거 같긴 한데 아직은 배우는 중이고, 영어도 약해서 '맞겠지...' 하고 있다. 아니 공식문서에서는 저런 내용이 없으니까...  
 확증은 없지만 빌드할 때 에러 안 난다.
 
+## 추가
+
+클라이언트 컴포넌트라면 `useParams`를 사용하면 된다.  
+query string을 읽고 싶다면 `useSearchParams`를 쓰면 된다.
+
+```tsx:app/example-client-component.tsx
+'use client'
+
+import { useParams } from 'next/navigation'
+
+export default function ExampleClientComponent() {
+  const params = useParams<{ tag: string; item: string }>()
+
+  // Route -> /shop/[tag]/[item]
+  // URL -> /shop/shoes/nike-air-max-97
+  // `params` -> { tag: 'shoes', item: 'nike-air-max-97' }
+  console.log(params)
+
+  return '...'
+}
+```
+
+예시 주석에도 적었지만, 동적 파라미터를 포함한 객체를 반환한다.
+
 ---
 
 ## 참조
 
 - https://github.com/vercel/next.js/discussions/62104
+- https://nextjs-ko.org/docs/app/api-reference/functions/use-params
