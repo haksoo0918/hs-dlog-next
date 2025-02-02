@@ -17,7 +17,11 @@ const Header = () => {
         'flex w-full items-center justify-between bg-white py-10 dark:bg-gray-950'
       )}
     >
-      <Link href="/" aria-label={siteMetadata.headerTitle} className="hover:no-underline">
+      <Link
+        href="/"
+        aria-label={siteMetadata.headerTitle}
+        className="transition-colors hover:text-primary-500 hover:no-underline dark:text-gray-100 dark:hover:text-primary-400"
+      >
         <div className="flex items-center justify-between">
           <div className="mr-3">
             <Image src="/static/favicons/logo.svg" alt="HS Logo" width={64} height={64} />
