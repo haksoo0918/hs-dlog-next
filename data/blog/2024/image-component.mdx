@@ -1,6 +1,7 @@
 ---
 title: Image Component
 date: '2024-12-08'
+lastmod: '2025-02-08'
 tags: ['image', 'component', 'react', 'next']
 draft: false
 summary: 대게 이미지가 깨질 수 도 있는 경우를 대비한 이미지 컴포넌트
@@ -20,7 +21,6 @@ import noImage from '../assets/no-image.svg';
  * @param {string} props.src - 이미지 주소
  * @param {string} props.alt - 이미지 대체 문구
  * @param {object} props.props - 나머지 속성들
- * @return {JSX.Element} 이미지 컴포넌트
  */
 function Img({ src = noImage, alt = '', ...props }) {
   // 이미지 로드 실패 시 처리
@@ -34,7 +34,7 @@ function Img({ src = noImage, alt = '', ...props }) {
 export default Img;
 ```
 
-요건 넥스트 용이다.
+요건 넥스트 용이다. `img`를 넣어뒀는데 쓸까 싶기는 하다.
 
 ```tsx:Img.tsx
 import Image, { ImageProps } from 'next/image';
@@ -51,21 +51,20 @@ interface Props extends ImageProps {
  * @param {string} props.src - 이미지 주소
  * @param {string} props.alt - 이미지 대체 문구
  * @param {object} props.props - 나머지 속성들
- * @return {JSX.Element} 이미지 컴포넌트
  */
 export default function Img({ useImg = false, src, alt = '', ...props }: Props) {
-  const imgProps = {
-    src: src || NoImage,
-    alt,
-    onError: handleError,
-    ...props,
-  };
-
   // 이미지 로드 실패 시 처리
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const target = e.currentTarget;
     target.srcset = '';
     target.src = NoImage.src;
+  };
+
+  const imgProps = {
+    src: src || NoImage,
+    alt,
+    onError: handleError,
+    ...props,
   };
 
   return useImg ? (
