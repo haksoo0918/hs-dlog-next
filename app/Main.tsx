@@ -12,11 +12,12 @@ export default function Home({ posts }) {
   return (
     <>
       <header>
-        <h1 className="text-xl font-bold">HS dlog 홈페이지 입니다.</h1>
-        <p className="my-4">
-          여기 소개글을 적어둘까 하는데, 뭐 마땅히 적을게 없네요.
+        <h1 className="text-xl font-bold">HS dlog 홈페이지입니다.</h1>
+        <p className="prose my-4 dark:prose-invert">
+          여기 소개 글을 적어둘까 하는데, 뭐 마땅히 적을 게 없네요.
           <br />
-          이제 막 만들어서 아직 별 내용이 없습니다. ㅎㅎ
+          퍼블리싱을 했었고, 지금은 FE 개발을 공부하고 있습니다. 공부 노트 정도로 사용 중입니다.
+          만든지 얼마 되지 않아서 아직 별 내용이 없습니다. ㅎㅎ
           <br />
           아마도 조금씩이나마 콘텐츠도 늘어나고 모양도 이뻐질 꺼에요. 😊
         </p>

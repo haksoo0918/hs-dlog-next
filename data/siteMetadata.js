@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'HS dlog',
   author: 'HS',
   headerTitle: 'HS dlog',
-  description: '화면 개발 관련 또는 잡담 - 기록',
+  description: 'Front-End 개발 관련 또는 잡담 - 기록',
   language: 'ko',
   theme: 'system', // system, dark 또는 light
   siteUrl: 'https://hs-dlog.vercel.app',
