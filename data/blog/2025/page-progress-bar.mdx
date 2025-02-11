@@ -1,0 +1,36 @@
+---
+title: 스크롤 애니메이션을 활용해서 진행률을 표시해 보자
+date: '2025-02-11'
+tags: ['css', 'animation', 'scroll', 'scale']
+draft: false
+summary: CSS의 스크롤 애니메이션을 활용해서 진행률 보여주는 프로그레스 만들기
+---
+
+CSS의 스크롤 애니메이션을 활용하면 쉽게 컨텐츠를 얼마나 소비했는지, 보여주는 프로그레스를 쉽게 만들 수 있다.
+
+`animation-timeline`에 `scroll()`을 사용해 다음과 같이 작성하면 된다.
+
+```css
+@keyframes grow-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+#page-progress {
+  @apply fixed left-0 top-0 z-60 h-1 w-full bg-primary-500;
+
+  transform-origin: 0 50%;
+  animation: grow-progress auto linear;
+  animation-timeline: scroll();
+}
+```
+
+정말 쉽다.
+
+## 참조
+
+- https://developer.chrome.com/docs/css-ui/scroll-driven-animations?hl=ko
