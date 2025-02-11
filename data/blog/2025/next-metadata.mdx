@@ -1,6 +1,7 @@
 ---
 title: 넥스트 프로젝트에 metadata를 넣자. SEO를 위해서!
 date: '2025-01-03'
+lastmod: '2025-02-10'
 tags: ['next', 'meta', 'seo']
 draft: false
 summary: SEO는 중요하다. 많이 중요하다.
@@ -10,6 +11,8 @@ summary: SEO는 중요하다. 많이 중요하다.
 SEO는 중요하다. 많이 중요하다.  
 참고로 **page router**에서는 `next/head`를 사용하고, **app router**에서는 `metadata`를 사용한다.  
 여기서는 `metadata`만 설명한다.
+
+## 기본 사용법
 
 ```tsx
 import type { Metadata } from 'next'
@@ -30,7 +33,7 @@ export async function generateMetadata({ params }) {
 ```
 
 여기는 기본적인 사용법이나 필수적인 값만 정리했다.  
-자세한 정보나 사용법, 다이내믹 등은 [레퍼런스 사이트](https://nextjs.org/docs/app/api-reference/functions/generate-metadata)를 참조하자.
+자세한 정보나 사용법 등은 [레퍼런스 사이트](https://nextjs.org/docs/app/api-reference/functions/generate-metadata)를 참조하자.
 
 먼저 기본적인 사용법을 정리하면...
 우선 `layout.tsx`에서 다음과 같이 정의하고,
@@ -142,10 +145,37 @@ export const metadata: Metadata = {
 - robots
 - 기타 등등
 
+## 데이터를 다이내믹하게 넣자
+
+디비나 설정된 값으로 적용하는 방법이다. `generateMetadata`를 쓰면 된다.
+
+```tsx:app/blog/[slug]/page.tsx
+export async function generateMetadata({ params }) {
+  const res = await fetch(`/api/posts/${params.slug}`)
+  const post = await res.json()
+
+  return {
+    title: post.title,
+    description: post.summary,
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      url: `https://clerk.com/blog/${params.slug}`,
+      images: [{ url: post.image }],
+    },
+  }
+}
+
+export default function BlogPost({ params }) {
+  return <h1>Blog Post: {params.slug}</h1>
+}
+```
+
 ## 'use-client' 일 때 적용하기
 
 metadata는 서버 컴포넌트 전용이다. 그래서 클라이언트 컴포넌트에서는 사용할 수 없다.
-그래서 그때는 **metadata**부분을 따로 빼는 방법이 있는데, `layout.tsx`가 좋은 선택지 중 하나인 것 같다.
+그래서 그때는 **metadata**부분을 따로 빼는 방법이 있는데, `layout.tsx`가 좋은 선택지 중 하나인 것 같다.  
+또는 클라이언트 컴포넌트를 빼서 페이지를 서버 컴포넌트로 유지하는 것도 하나의 방법일거 같은데 이건 해봐야 알 거 같다.
 
 ```tsx:layout.tsx
 import { ReactNode } from 'react';
@@ -171,3 +201,4 @@ export default function Layout({ children }: Props) {
 
 - https://nextjs.org/docs/app/api-reference/functions/generate-metadata
 - https://stackoverflow.com/questions/76445050/not-able-to-change-the-title-with-metadata-when-using-use-client-in-next-js
+- https://clerk.com/blog/how-to-customize-nextjs-metadata
