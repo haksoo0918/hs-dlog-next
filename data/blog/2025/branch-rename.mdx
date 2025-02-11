@@ -1,0 +1,24 @@
+---
+title: Git 브랜치 이름 변경하기
+date: '2025-02-11'
+tags: ['git', 'branch', 'rename']
+draft: false
+summary: Git 브랜치 이름 변경하는 방법들 정리
+---
+
+어렵거나 이해가지 않거나 복잡하지 않음에도 불구하고  
+정말 간단한 건데 매번 까먹는다.
+
+그래서 적어둔다.
+
+방법은 2가지다. 현제 브랜치 이름을 변경하는 방법과, 현제 브랜치와 상관없이 브랜치 이름을 변경하는 방법이다.
+
+```bash
+# 1. 현제 브랜치 이름 변경
+git branch -m new-branch-name
+
+# 2. 현제 브랜치와 상관없이 브랜치 이름 변경
+git branch -m old-branch-name new-branch-name
+```
+
+정말 간단하다. 근데 왜 머리속에 남질 않는지...
