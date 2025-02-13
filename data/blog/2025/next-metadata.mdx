@@ -1,7 +1,7 @@
 ---
 title: 넥스트 프로젝트에 metadata를 넣자. SEO를 위해서!
 date: '2025-01-03'
-lastmod: '2025-02-10'
+lastmod: '2025-02-13'
 tags: ['next', 'meta', 'seo']
 draft: false
 summary: SEO는 중요하다. 많이 중요하다.
@@ -150,8 +150,12 @@ export const metadata: Metadata = {
 디비나 설정된 값으로 적용하는 방법이다. `generateMetadata`를 쓰면 된다.
 
 ```tsx:app/blog/[slug]/page.tsx
-export async function generateMetadata({ params }) {
-  const res = await fetch(`/api/posts/${params.slug}`)
+interface Props {
+  params: Promise<{ slug: string }>
+}
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params
+  const res = await fetch(`/api/posts/${slug}`)
   const post = await res.json()
 
   return {
@@ -160,13 +164,13 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: post.title,
       description: post.summary,
-      url: `https://clerk.com/blog/${params.slug}`,
+      url: `https://clerk.com/blog/${slug}`,
       images: [{ url: post.image }],
     },
   }
 }
 
-export default function BlogPost({ params }) {
+export default function BlogPost({ params }: Props) {
   return <h1>Blog Post: {params.slug}</h1>
 }
 ```
