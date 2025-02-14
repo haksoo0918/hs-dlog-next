@@ -1,0 +1,31 @@
+---
+title: 조건에 따른 jsx 속성 부여
+date: '2025-02-14'
+tags: ['jsx', 'attribute', 'conditional']
+draft: false
+summary: 조건에 따른 jsx 속성 부여
+---
+
+조건에 따라 속성 자체의 부여를 결정하고 싶었다.  
+정확히 기억은 안나지만, 넥스트 이미지 사용을 하는데 쪼메난 이미지에 무슨 placeholder와 blurData를 쓰냐는 식의 경고였던거 같다.  
+이렇게 저렇게 해보다가 마음먹은데로 안되서 찾기 시작했다.  
+그래서 찾았다. 그리고 소스를 보면서 오 저렇게 적용할 수 있구나 하고 깨닳았다.
+
+에러 처리와 placeholder를 처리하기 위한 이미지 컴포넌트에 적용 하였다.
+
+```jsx
+const blurDataURL = 'data:image/png;base...'
+
+const Img = ({ usePlaceholder }) => {
+  return (
+    <Image
+      placeholder={usePlaceholder ? 'blur' : 'empty'}
+      {...(usePlaceholder && { blurDataURL })}
+    />
+  )
+}
+```
+
+## 참조
+
+- https://velog.io/@kingth/%EC%86%8D%EC%84%B1-%EC%9E%90%EC%B2%B4-%EB%AC%B4%EC%8B%9C-%EA%B0%80%EB%8A%A5
