@@ -1,0 +1,47 @@
+---
+title: favicon 정리
+date: '2025-02-17'
+tags: ['favicon', 'icon', 'PWA']
+draft: false
+summary: favicon 파일은 이걸로 마무으리
+---
+
+favicon은 몇 개나 얼마나 해야 할지 자주 고민되는 대상이다. 그것을 정리하는 글을 요약했다.
+
+이 정도만 넣어도 큰 부족함은 없다.
+
+```html
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" href="/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" /><!-- 180×180 -->
+```
+
+- `favicon.ico` 파일은 32px 이면 충분하다.
+- svg 파일은 `@media (prefers-color-scheme: dark)` 정도는 적용해서 만들자.
+- Apple 기기를 위한 180px 이미지도 준비하자. 이때 20px 정도의 여백은 두고 만들자.
+
+PWA를 적용한다면 다음 코드도 넣고, 추가 이미지도 준비하자.
+
+```html
+<link rel="manifest" href="/manifest.webmanifest" />
+```
+
+```json:manifest.webmanifest
+{
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-mask.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}
+```
+
+마스크 이미지는 패딩 값이 커야 한다. 409px 원을 기준으로 잡는 것이 좋다. [maskable.app](https://maskable.app/) 사이트를 이용해 보는 것도 좋다.
+
+더 많은 정보는 참조 사이트를 보거나 알아서 찾자.
+
+참조 주소를 보면 21년 6개 파일에서 25년 3개 파일로 줄었다. ㅎㅎ
+
+## 참조
+
+- https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs
