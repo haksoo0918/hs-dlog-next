@@ -1,0 +1,47 @@
+---
+title: Node.js와 npm 버전 올리기
+date: '2025-02-24'
+tags: ['node', 'npm', 'version', 'update']
+draft: false
+summary: Node.js와 npm 버전을 올리는 방법을 정리했다.
+---
+
+팀 프로젝트 할 때는 시작 전에 버전을 맞추고 시작하자.
+
+## 버전 확인
+
+```shell
+node -v
+npm -v
+```
+
+## Node Update
+
+### n 모듈 설치하기
+
+n 이란 모듈로 Node를 관리할 수 있다.
+
+```shell
+npm i -g n
+```
+
+### n으로 Node 설치하기
+
+- stable: 안정 버전으로 최신 기능과 성능 개선이 적용된 버전으로 일반 사용자에게 권장된다.
+- latest: 최신 버전으로 말 그대로다. 최신 기능을 사용하고 싶을 때 사용한다.
+- lts: lts는 'Long Term Support'의 약자로 장기 지원 버전을 의미한다. 안정성에 초점을 맞춘 버전으로, 새로운 기능 추가는 최소화하고 기존 기능의 안정성을 유지하는 목적으로 사용 가능하다.
+- 설치할 버전을 지정(x.x.x) 할 수도 있다.
+
+```shell
+n stable
+```
+
+## NPM Update
+
+```shell
+npm i -g npm
+```
+
+## 참조
+
+- https://velog.io/@jjhstoday/Node.js-Node.js%EC%99%80-NPM-%EC%B5%9C%EC%8B%A0%EB%B2%84%EC%A0%84%EC%9C%BC%EB%A1%9C-%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C-%ED%95%98%EA%B8%B0
