@@ -1,4 +1,4 @@
-import { FolderGit, Link2 } from 'lucide-react'
+import { FolderGit, Link2, ExternalLink } from 'lucide-react'
 
 import Image from '../Image'
 import Link from '../Link'
@@ -27,7 +27,7 @@ const Card = ({ title, description, imgSrc, repository, href }) => (
         <h2 className="mb-3 text-2xl font-bold leading-8 tracking-tight">
           {href ? (
             <Link href={href} aria-label={`Link to ${title}`}>
-              {title}
+              {title} <ExternalLink className="inline size-4 align-top" />
             </Link>
           ) : (
             title
