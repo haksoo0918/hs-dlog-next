@@ -12,11 +12,15 @@ export default function Projects() {
           Projects
         </h1>
         <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-          FE 개발 교육과정중에 만들었던 프로젝트
+          Front-end 개발 프로젝트
         </p>
       </div>
 
       <div className="container py-12">
+        <h2 className="mb-5 text-2xl font-bold leading-8 tracking-tight">
+          Codeit Front-end 개발 부트캠프 교육과정 동안 만든 팀 프로젝트
+        </h2>
+
         <div className="-m-4 flex flex-wrap">
           {projectsData.map((d) => (
             <Card
