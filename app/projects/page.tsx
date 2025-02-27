@@ -18,7 +18,7 @@ export default function Projects() {
 
       <div className="container py-12">
         <h2 className="mb-5 text-2xl font-bold leading-8 tracking-tight">
-          Codeit Front-end 개발 부트캠프 교육과정 동안 만든 팀 프로젝트
+          코드잇(Codeit) 부트캠프 - Front-end 개발 교육과정 동안 만든 팀 프로젝트
         </h2>
 
         <div className="-m-4 flex flex-wrap">
