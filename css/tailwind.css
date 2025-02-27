@@ -131,8 +131,8 @@ input:-webkit-autofill:focus {
   animation-timeline: scroll();
 }
 
-/* gnb animation */
-@keyframes toggle-gnb {
+/* gnb scroll animation */
+/* @keyframes toggle-gnb {
   from {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -164,4 +164,4 @@ input:-webkit-autofill:focus {
     animation-timeline: scroll();
     animation-range: var(--ani-start) var(--ani-end);
   }
-}
+} */
