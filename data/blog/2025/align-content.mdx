@@ -1,0 +1,24 @@
+---
+title: 세로 가운데 정렬을 위한 flex나 absolute는 이제 그만!
+date: '2025-03-12'
+tags: ['align', 'center', 'block', 'flex', 'absolute']
+draft: false
+summary: align-content를 사용하면 block 요소에서 세로 가운데 정렬이 가능하다.
+---
+
+오롯이 세로 가운데 정렬을 위해 `flex`나 `absolute`를 사용하는 경우가 많았다. 물론 그것만을 위한 선택이 아닌 경우도 있겠지만, 그런 경우가 많았다.
+
+`align-content`를 사용하면 block 요소에서 세로 가운데 정렬을 할 수 있다.
+
+```css:예시 {4}
+.container {
+  height: 200px;
+  text-align: center;
+  align-content: center;
+}
+```
+
+block 요소에서 가운데 정렬을 위한 `flex`는 더 이상 쓰지 않아도 쉽게 적용이 가능하다.
+
+물론 `align-content`는 `center` 뿐만 아니라, 'start, end, flex-start, flex-end, baseline, space-between'등 다양한 속성을 지원한다.  
+자세한 내용은 [mdn](https://developer.mozilla.org/ko/docs/Web/CSS/align-content)을 참조하자.
