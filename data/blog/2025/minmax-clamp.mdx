@@ -1,0 +1,77 @@
+---
+title: CSS 반응형 함수 min, max, minmax, clamp 알아보기
+date: '2025-03-13'
+tags: ['css', '반응형', 'function', 'min', 'max', 'minmax', 'clamp']
+draft: false
+summary: CSS에서 사용하는 반응형 함수 min, max, minmax, clamp에 대해 알아보자.
+---
+
+CSS에서 반응형 하면 무조건 `@media`를 떠올릴 수 있다. 하지만, CSS에서 제공하는 함수를 사용하여 반응형을 구현할 수도 있다.
+
+이번 글에서는 CSS에서 제공하는 반응형 함수 `min`, `max`, `minmax`, `clamp`에 대해 정리해 보려 한다.
+
+## `min()`
+
+`min()` 함수는 2개의 인자를 받고, 받은 값 중에서 작은 값을 반환한다.
+
+```css:예시 {3}
+.container {
+  /* 100% 가 500px 보다 작으면 100%로 아니면 500px로 표현된다. */
+  width: min(100%, 500px);
+  /* 다시 말하면 기본 100% 최대 500px로 표현되는 것과 같다. */
+  width: 100%;
+  max-width: 500px;
+}
+```
+
+## `max()`
+
+`max()` 함수는 2개의 인자를 받고, 받은 값 중에서 큰 값을 반환한다.
+
+```css:예시 {3}
+.container {
+  /* 100% 가 500px 보다 크면 500px로 아니면 100%로 표현된다. */
+  width: max(100%, 500px);
+  /* 다시 말하면 기본 100% 최소 500px로 표현되는 것과 같다. */
+  width: 100%;
+  min-width: 500px;
+}
+```
+
+## `minmax()`
+
+`minmax()` 함수는 2개의 인자를 받고, 첫 번째 인자는 최솟값, 두 번째 인자는 최댓값을 나타낸다.  
+'min'과 'max'가 결합된 형태라고 보면 되고, 대게 `grid`나 `flex`에서 사용된다.
+
+```css:예시 {4}
+.grid-container {
+  display: grid;
+  /* 첫 번째 열만 최솟값 100px을 갖는 형태가 된다. */
+  grid-template-columns: minmax(100px, 1fr) 1fr 1fr;
+}
+```
+
+## `clamp()`
+
+반응형 함수 중에 최종 진화 버전이다. `clamp()` 함수는 3개의 인자를 받고, 첫 번째 인자는 최솟값, 두 번째 인자는 기본값, 세 번째 인자는 최댓값을 나타낸다.  
+`minmax()`와 비슷하지만, `clamp()`가 더욱 유연하게 사용할 수 있다.
+
+```css:예시 {3}
+.content {
+  /* 최솟값 16px, 기본값 2vw, 최댓값 24px로 표현된다. */
+  font-size: clamp(16px, 2vw, 24px);
+}
+```
+
+## 활용
+
+다양한 곳에 사용할 수 있지만, 익숙해지면 다음과 같이 섞어 사용하게도 된다.
+
+```css:예시 {5}
+.list {
+  --min-width: 200px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--min-width)), 1fr));
+}
+```
