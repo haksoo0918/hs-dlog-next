@@ -1,0 +1,59 @@
+---
+title: input에 range를 활용한 별점 컴포넌트
+date: '2025-03-18'
+tags: ['input', 'range', 'star', 'rating', 'css', 'component']
+draft: false
+summary: input에 range 타입과 css를 활용한 별점 컴포넌트
+---
+
+CSS-TRICKS에 있는 [A CSS-Only Star Rating Component](https://css-tricks.com/a-css-only-star-rating-component-and-more-part-1/) 글에있는 소 스중 하나를 그대로 가져왔다.
+
+자세한 설명과 다양한 예제는 위 링크 글을 참고하자.
+
+```html
+<span><input type="range" min="1" max="5" step="1" value="1" /></span>
+```
+
+```css
+input[type='range'] {
+  --s: 100px; /* 별 svg 크기 */
+  --_s: calc(attr(step type(<number>), 1) * var(--s) / 2);
+
+  height: var(--s);
+  aspect-ratio: attr(max type(<number>));
+  padding-inline: var(--_s);
+  box-sizing: border-box;
+  appearance: none;
+  cursor: pointer;
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 5 L79 95 L2 40 L98 40 L21 95 Z'/></svg>");
+  mask-size: var(--s);
+}
+input[type='range' i]::-webkit-slider-thumb {
+  width: 1px;
+  height: var(--s);
+  border-image: linear-gradient(90deg, gold calc(50% + var(--_s)), grey 0) fill 0//0 500px;
+  appearance: none;
+}
+input[type='range']::-moz-range-thumb {
+  width: 1px;
+  height: var(--s);
+  border-image: linear-gradient(90deg, gold calc(50% + var(--_s)), grey 0) fill 0//0 500px;
+  appearance: none;
+}
+
+span:has(:focus-visible) {
+  outline: 2px solid;
+}
+
+@supports not (d: attr(d type(*))) {
+  input[type='range'] {
+    aspect-ratio: 5;
+    --_s: calc(var(--s) / 4);
+  }
+}
+```
+
+`attr` 함수는 아직 지원하지 않는 브라우저가 있어서, `@supports`를 사용하였다.  
+`span`은 포커스 되었음을 표현하기 위해 사용하였다.
+
+[CSS-TRICKS](https://css-tricks.com/)에는 좋은 내용의 글이 많다. 참고할 내용과 소스도 많고, 공부도 된다.
