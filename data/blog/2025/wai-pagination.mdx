@@ -1,0 +1,90 @@
+---
+title: 웹접근성을 적용한 페이지네이션
+date: '2025-03-19'
+tags: ['pagination', 'web', 'accessibility', 'WAI', 'aria']
+draft: false
+summary: 페이지네이션에 웹접근성을 적용해 보았다.
+---
+
+원본: [Page by Page: How Pagination Makes the Web Accessible](https://www.htmhell.dev/adventcalendar/2024/14/)
+
+---
+
+페이지네이션은 웹사이트에서 많은 양의 콘텐츠를 여러 페이지로 나누어 보여주는 방법이다.
+
+원본의 글을 나름 해석 및 요약한 글이다. 원본에 자세한 설명과 이해를 돕는 이미지가 있으니 원본의 글을 읽어보시길 추천한다.
+
+우선 예제를 보고 다음에 적용 방법을 요약정리했다.
+
+```html
+<nav aria-label="More Christmas cookie recipes">
+  <ul>
+    <li>
+      <a role="link" aria-disabled="true">Previous</a>
+    </li>
+    <li>
+      <a href="#" aria-current="page">1</a>
+    </li>
+    <li>
+      <a href="/2/">2</a>
+    </li>
+    <!-- ... -->
+    <li>
+      <a href="/2/" aria-label="Next, Page 2">Next</a>
+    </li>
+  </ul>
+</nav>
+```
+
+```css
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+```
+
+```html
+<nav aria-label="More Christmas cookie recipes">
+  <ul>
+    <li>
+      <a href="/1/">
+        <span class="sr-only">First Page</span>
+        <svg ...>...</svg>
+      </a>
+    </li>
+    <li>
+      <a href="/7/">
+        <img src="previous-page-icon.png" alt="Previous Page, Page 7" />
+      </a>
+    </li>
+    <li>
+      <span>...</span>
+      <span class="sr-only">skipping page 1 to 6</span>
+    </li>
+    <li>
+      <a href="#" aria-current="page">8</a>
+    </li>
+    <!-- ... -->
+  </ul>
+</nav>
+```
+
+- `<nav>` 요소에 `aria-label` 속성을 주고 어떤 목록의 페이지네이션인지 값을 부여하자.
+- 만약 `<nav>` 가 아닌 다른 태그를 사용한 경우에는 `role="navigation"` 속성을 부여하자.
+- 페이지 번호와 인덱스가 일치하는 경우에는 `<ol>`을, 아닌 경우에는 `<ul>`을 사용하자.
+- 비 활성화 링크에는 `href` 속성을 제외하고 `aria-disabled="true"`, `role="link"` 두 가지 속성을 부여하자.
+- 비 활성화 링크를 `<span>` 요소로 대체하는 것도 좋은 방법이다.
+- 현재 페이지 번호에 해당하는 링크에는 `aria-current="page"` 속성을 부여하자.
+- 링크에 페이지 번호 만으로도 충분하지만, `aria-label="page 2"` 추가하면 스크린 리더 사용자에게 더 좋은 정보를 제공할 수 있다.
+- 기능을 하는 아이콘 이미지에 설명은 필수이며, 아이콘을 설명하는 것이 아닌 목적을 설명해야 한다.
+- 스크린 리더만을 위한 설명을 추가할 때는 대게 `.sr-only` 클래스를 부여해서 처리하는 방법과 `aria-label` 속성을 추가하는 것이 있는데, 스크린 리더마다 달리 읽히기 때문에 따로 테스트가 필요하다.
+- 일부 스크린 리더는 svg 요소에 `role="presentation"` 속성을 추가해야 장식 요소로 해석된다.
+- 아이콘을 svg가 아닌 `<img>` 경우 `alt` 속성으로 처리한다.
+- '...'으로 표현된 생략된 페이지 번호들은 `.sr-only` 클래스를 사용한 방법을 추천한다.
