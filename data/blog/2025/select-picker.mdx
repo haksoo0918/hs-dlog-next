@@ -1,0 +1,74 @@
+---
+title: picker를 활용한 select 꾸미기
+date: '2025-04-16'
+tags: ['select', 'picker', 'html', 'css']
+draft: false
+summary: select를 picker를 사용해서 꾸미기
+---
+
+`select`는 기본적으로 제공되는 요소이지만, 디자인을 커스터마이징하기가 쉽지 않다.
+
+`::picker()`를 사용하여 `select`의 디자인을 커스터마이징할 수 있지만, 아직은 실험적인 기능이라 실무에서 사용하기는 어렵다.  
+우선 대략적으로 알아두고 나중에 지원되면 그때 적용하면 될 것 같다.
+
+```html:html
+<div class="container">
+  <label for="select">Select: </label>
+  <select id="select" class="select">
+    <option value="" selected disabled>selected...</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+</div>
+```
+
+```css:css
+body {
+  background-color: #eee;
+}
+.container {
+  width: 20rem;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* here */
+.select {
+  background-color: #fff;
+
+  &:focus {
+    outline: 0.25rem solid #ddd;
+  }
+
+  &,
+  &::picker(select) {
+    appearance: base-select;
+    padding: 0.5rem 1rem;
+    border-color: #eee;
+    border-radius: 0.25rem;
+  }
+
+  option {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+}
+```
+
+<iframe
+  height="300"
+  className="w-full"
+  title="pretty select"
+  src="https://codepen.io/haksoo/embed/dPPyozm?default-tab=html%2Cresult"
+  loading="lazy"
+  allowtransparency="true"
+  allowFullScreen
+></iframe>
+
+## 참조
+
+- [::picker() | mdn](https://developer.mozilla.org/en-US/docs/Web/CSS/::picker)
+- [Customizable Select | Codepen](https://codepen.io/sfrisk/pen/NPWELrw)
