@@ -1,9 +1,18 @@
+export const projectGroupLabels = {
+  bootcamp: 'Codeit Front-end Bootcamp',
+  personal: 'Personal',
+} as const
+
+export type ProjectGroupKey = keyof typeof projectGroupLabels
+
 interface Project {
   title: string
   description: string
   repository?: string
   href?: string
   imgSrc?: string
+  group: ProjectGroupKey
+  date: string
 }
 
 const projectsData: Project[] = [
@@ -13,6 +22,8 @@ const projectsData: Project[] = [
     imgSrc: '/static/images/capture-openmind.png',
     repository: 'https://github.com/fe11-part2-team8/openmind',
     href: 'https://team8-openmind.netlify.app/',
+    date: '2024-11-08',
+    group: 'bootcamp',
   },
   {
     title: 'Wikied',
@@ -20,6 +31,8 @@ const projectsData: Project[] = [
     imgSrc: '/static/images/capture-wikied.png',
     repository: 'https://github.com/codeitFE11-part3-team7/wikid',
     href: 'https://wikied-ten.vercel.app/',
+    date: '2025-01-02',
+    group: 'bootcamp',
   },
   {
     title: 'Coworkers',
@@ -27,6 +40,8 @@ const projectsData: Project[] = [
     imgSrc: '/static/images/capture-coworkers.png',
     repository: 'https://github.com/Team-7-Coworkers/coworkers',
     href: 'https://coworkers-11-4-7.vercel.app/',
+    date: '2025-02-27',
+    group: 'bootcamp',
   },
 ]
 
