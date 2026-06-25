@@ -1,22 +1,27 @@
 ---
-title: 리액트 use훅 사용법
+title: 리액트 use 훅 사용법
 date: '2025-02-07'
-tags: ['react', 'use', 'hook']
+lastmod: '2025-02-08'
+tags: ['react', 'next', 'use', 'hook']
 draft: false
-summary: 리액트 use훅의 사용법과 예제 정리
+summary: 리액트 use 훅의 사용법과 예제 정리
 ---
 
-리액트19버전에 도입된 훅이다. 컨텍스트와 프로미스 작업에 용이하다.  
-이해가 되는듯 하나 헷갈리는 부분이 있어서 정리해 둔다.
+리액트 19버전에 도입된 훅이다. 컨텍스트와 프로미스 작업에 용이하다.  
+이해가 되는 듯 하나 헷갈리는 부분이 있어서 정리해 둔다.
 
 ## 우선은 프로미스 처리
 
-이런 저런 예제를 보고, 마음에 드는 코드를 약간 수정했다.
+이런저런 예제를 보고, 마음에 드는 코드를 약간 수정했다.  
+그래서 실제는 테스트를 진행해 봐야 알 수 있다.
 
-총 3개의 파일이다.
+- 다른 예제 `page2.jsx`를 추가했다.
+
+총 3(+1) 개의 파일이다.
 
 - api.js
 - page.jsx
+- page2.jsx
 - PostComp.jsx
 
 ```js:api.js
@@ -38,11 +43,32 @@ const Page = () => {
   const promisePost = fetchPost(1)
 
   return (
-    <ErrorBoundary fallback={<p>오류가 발생하였습니다.</p>}>
+    <ErrorBoundary fallback={<p>오류가 발생했습니다.</p>}>
       <Suspense fallback={<p>데이터를 가져오고 있습니다.</p>}>
         <PostComp promisePost={promisePost} />
       </Suspense>
     </ErrorBoundary>
+  )
+}
+
+export default Page
+```
+
+```jsx:page2.jsx
+import { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
+import { fetchPost } from './api'
+import PostComp from './PostComp'
+
+const Page = () => {
+  const promisePost = fetchPost(1)
+    // .then(data => data) // 확인이 필요
+    .catch(err => err.message || '오류가 발생했습니다.')
+
+  return (
+    <Suspense fallback={<p>데이터를 가져오고 있습니다.</p>}>
+      <PostComp promisePost={promisePost} />
+    </Suspense>
   )
 }
 
@@ -56,6 +82,9 @@ import { use } from 'react'
 
 const PostComp = ({ promisePost }) => {
   const post = use(promisePost)
+
+  // page2 에러 대응
+  if (typeof post === 'string') return <h1>{post}</h1>
 
   return (
     <>
@@ -73,7 +102,7 @@ export default PostComp
 컨텍스트 값을 가져오기 위해 `useContext`를 사용했는데, 이제 `use`훅으로 클라이언트 컴포넌트에서 컨텍스트 값을 사용할 수 있다.  
 `use`훅은 루프와 조건문에서 유연하게 사용할 수 있어서 사용이 편리하다고 한다.
 
-이건 다양하게 써봐야 알거같다.
+이건 다양하게 써봐야 알 것 같다.
 
 이것도 총 3개의 파일이다.
 

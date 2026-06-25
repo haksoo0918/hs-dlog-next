@@ -1,0 +1,31 @@
+---
+title: 사용을 추천하는 새로운 HTML 태그들
+date: '2025-03-25'
+tags: ['html', 'dialog', 'detail', 'progress']
+draft: true
+summary: 사용을 적극 추천하는 새롭게 추가된 HTML 요소들
+---
+
+CSS도 새로운 것들이 많이 추가되고 있지만, HTML도 새로운 요소들이 추가되고 있다.
+기능적인 면이나 UI, 접근성, 시멘틱을 고려한 요소들이 추가되고 있다.
+
+대략적으로 알고는 있지만 자주 사용하지 않다보니 잊고 잘 사용하지 않는 요소들이 있다.
+
+[Cool native HTML elements you should already be using](https://harrisonbroadbent.com/blog/cool-native-html-elements/) 글을 요약 정리 + 내 생각 10% 추가해 봤다.
+
+## dialog
+
+모달은 어디서나 사용되는 필수적인 요소이다. `div`로 만들어 javascript로 기능을 구현하여 많이들 만들어서 사용했을 것이다.  
+이제는 `dialog` 요소와 제공된 속성을 활용하자.
+
+```html
+<dialog open>
+  <form method="dialog">
+    <p>Are you sure you want to delete this?</p>
+    <menu>
+      <button>Cancel</button>
+      <button>Delete</button>
+    </menu>
+  </form>
+</dialog>
+```
