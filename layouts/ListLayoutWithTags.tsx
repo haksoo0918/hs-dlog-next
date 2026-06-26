@@ -151,7 +151,9 @@ export default function ListLayoutWithTags({
                         </h2>
                         <div className="mt-2 flex flex-wrap items-center">
                           <TagIcon className="mr-2 text-gray-400" size={20} />
-                          {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                          {tags?.map((tag) => (
+                            <Tag key={tag} text={tag} />
+                          ))}
                         </div>
                       </div>
                       <div className="prose max-w-none text-gray-500 dark:text-gray-400">
